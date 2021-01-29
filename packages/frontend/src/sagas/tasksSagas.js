@@ -6,8 +6,8 @@ export function* createTaskSaga(data){
   yield put(createTaskRequest())
 
   try {
-    const {data:{data:hero}} = yield API.createHero(data)
-    yield put(createTaskSuccess(hero))
+    const {data:{data:task}} = yield API.createTask(data)
+    yield put(createTaskSuccess(task))
   }
   catch(error){
     yield put(createTaskError(error))

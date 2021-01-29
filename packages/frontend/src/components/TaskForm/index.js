@@ -1,27 +1,30 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { Formik, Form, Field } from 'formik'
-import { createTask } from '../../actions/tasksActionCreators'
+import * as tasksActionCreators from './../../actions/tasksActionCreators'
+import { bindActionCreators } from 'redux'
 
 const TaskForm = (props) => {
 
-  const { createTaskCb } = props;
+  const dispatch = useDispatch();
 
+  const { createTask } = bindActionCreators(tasksActionCreators, dispatch)
   return (
     <Formik initialValues={{
-      data: 'New Task ',
+      value: '',
       isDone: false,
+      deadline: '',
+      userId: ''
     }
     }
-      onSubmit={(values) => createTaskCb(values)}
+      onSubmit={(values) => createTask(values)}
     >{
         formik => (
           <Form>
             <Field name='data' />
-            <Field name='isDone' />
+            <Field name='deadline' />
+            <Field name='userId' />
             <button type='submit'>Create task</button>
-            <button type='reset'>Reset</button>
           </Form>
         )
       }
@@ -29,12 +32,4 @@ const TaskForm = (props) => {
   )
 }
 
-TaskForm.propTypes = {
-  props: PropTypes
-}
-
-const mapDispatchToProps = (dispatch) => ({
-  createTaskCb: (values) => { dispatch(createTask(values)) }
-})
-
-export default connect(null, mapDispatchToProps)(TaskForm)
+export default TaskForm;

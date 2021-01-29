@@ -1,6 +1,5 @@
 import {takeLatest} from 'redux-saga/effects';
 import ACTION_TYPES from '../actions/types';
-import { } from './heroesSagas';
 import { createTaskSaga, getTaskSaga } from './tasksSagas';
 
 function* rootSaga(){

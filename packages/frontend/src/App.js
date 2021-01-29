@@ -8,9 +8,9 @@ function App() {
     <Router>
       <nav>
         <ul>
-          <li>
+          {/* <li>
             <Link to='/' >Tasks</Link>
-          </li>
+          </li> */}
           <li>
             <Link to='/tasks' >Tasks</Link>
           </li>
