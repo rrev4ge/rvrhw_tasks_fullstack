@@ -3,19 +3,18 @@ import ACTION_TYPES from '../actions/types';
 const initialState = {
   tasks: [],
   isFetching: false,
-  error: null,
-}
+  error: null
+};
 
-function tasksReducer(state = initialState, action) {
+function tasksReducer (state = initialState, action) {
   const { type } = action;
   switch (type) {
-
     case ACTION_TYPES.GET_TASKS_REQUEST:
     case ACTION_TYPES.CREATE_TASK_REQUEST: {
       return {
         ...state,
-        isFetching: false
-      }
+        isFetching: true
+      };
     }
     case ACTION_TYPES.CREATE_TASK_SUCCESS: {
       const { task } = action;
@@ -23,18 +22,35 @@ function tasksReducer(state = initialState, action) {
       return {
         ...state,
         tasks: [...state.tasks, task],
+        isFetching: false
+      };
+    }
+
+    case ACTION_TYPES.UPDATE_TASK_REQUEST: {
+      return {
+        ...state,
         isFetching: true
-      }
+      };
+    }
+    case ACTION_TYPES.UPDATE_TASK_SUCCESS: {
+      const { task } = action;
+
+      return {
+        ...state,
+        tasks: [...state.tasks, task],
+        isFetching: false
+      };
     }
 
     case ACTION_TYPES.GET_TASKS_SUCCESS: {
-      const { tasks } = action
+      const { tasks } = action;
 
       return {
         ...state,
         tasks: tasks,
-        isFetching: true
-      }
+        isFetching: false,
+        error: false
+      };
     }
 
     case ACTION_TYPES.GET_TASKS_ERROR:
@@ -43,9 +59,9 @@ function tasksReducer(state = initialState, action) {
 
       return {
         ...state,
-        isFetching: true,
+        isFetching: false,
         error
-      }
+      };
     }
 
     default: {

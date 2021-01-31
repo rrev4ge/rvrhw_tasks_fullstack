@@ -2,8 +2,7 @@ import './App.css';
 import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 import Tasks from './pages/Tasks';
 
-
-function App() {
+function App () {
   return (
     <Router>
       <nav>
@@ -18,7 +17,7 @@ function App() {
       </nav>
       <Switch>
         <Route exact path='/' component={Tasks} />
-        <Route path='/tasks' component={Tasks} /> 
+        <Route path='/tasks' component={Tasks} />
       </Switch>
     </Router>
   );

@@ -1,8 +1,9 @@
-POST http://localhost:3000/api/users/5/tasks
-Content-Type: application/vnd.api+json
+POST http://localhost:5000/api/tasks
+Content-Type: application/json
 
 {
   "value":"New task10",
   "isDone":false,
-  "deadline":"2021/11/11"
+  "deadline":"2021/11/11",
+  "userId":"2"
 }

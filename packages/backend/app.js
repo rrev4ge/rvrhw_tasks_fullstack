@@ -1,14 +1,17 @@
 const express = require('express');
 const { errorHandlers } = require('./middleware');
 const router = require('./router');
+const cors = require('cors');
 
 const app = express();
 
-app.use(express.json({ type: 'application/vnd.api+json' })); //built-in body-parser
+app.use(cors());
+
+app.use(express.json({ type: 'application/json' })); // built-in body-parser
 
 app.use('/api', router);
 
 // error handler
-//app.use(errorHandlers.sequelizeErrorHandler, errorHandlers.errorHandler);
+app.use(errorHandlers.sequelizeErrorHandler, errorHandlers.errorHandler);
 
 module.exports = app;

@@ -1,14 +1,13 @@
-import React from 'react'
-import { useDispatch } from 'react-redux'
-import { Formik, Form, Field } from 'formik'
-import * as tasksActionCreators from './../../actions/tasksActionCreators'
-import { bindActionCreators } from 'redux'
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { Formik, Form, Field } from 'formik';
+import * as tasksActionCreators from './../../actions/tasksActionCreators';
+import { bindActionCreators } from 'redux';
 
 const TaskForm = (props) => {
-
   const dispatch = useDispatch();
 
-  const { createTask } = bindActionCreators(tasksActionCreators, dispatch)
+  const { createTask } = bindActionCreators(tasksActionCreators, dispatch);
   return (
     <Formik initialValues={{
       value: '',
@@ -21,7 +20,7 @@ const TaskForm = (props) => {
     >{
         formik => (
           <Form>
-            <Field name='data' />
+            <Field name='value' />
             <Field name='deadline' />
             <Field name='userId' />
             <button type='submit'>Create task</button>
@@ -29,7 +28,7 @@ const TaskForm = (props) => {
         )
       }
     </Formik>
-  )
-}
+  );
+};
 
 export default TaskForm;

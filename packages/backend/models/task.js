@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
     // static associate(models) {
     //   Task.belongsTo(models.User, { foreignKey: 'userId', onDelete: 'RESTRICT', onUpdate: 'CASCADE' })
     // }
-  };
+  }
 
   Task.init({
     id: {
@@ -33,13 +33,13 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       type: DataTypes.DATE,
       validate: {
-        notNull: true,
-      },
+        notNull: true
+      }
     },
     userId: {
       allowNull: true,
-      type: DataTypes.INTEGER,
-    },
+      type: DataTypes.INTEGER
+    }
   }, {
     sequelize,
     modelName: 'Task',

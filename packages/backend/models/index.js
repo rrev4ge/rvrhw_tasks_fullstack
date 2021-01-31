@@ -5,7 +5,9 @@ const path = require('path');
 const Sequelize = require('sequelize');
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
+// eslint-disable-next-line node/no-path-concat
 const config = require(__dirname + '/../config/db.js')[env];
+
 const db = {};
 
 let sequelize;
@@ -36,9 +38,9 @@ db.Sequelize = Sequelize;
 
 // sequelize.sync({force:true})
 // .then(res => { console.log('Synk ok'); })
-// .catch(err => { 
+// .catch(err => {
 //   console.log('err :>> ', err);
-//   process.exit(1); 
+//   process.exit(1);
 // });
 
 module.exports = db;

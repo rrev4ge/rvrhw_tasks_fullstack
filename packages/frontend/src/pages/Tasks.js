@@ -1,12 +1,12 @@
-import React from 'react'
-import TaskForm from '../components/TaskForm'
-import TasksList from '../components/TasksList'
+import React from 'react';
+import TaskForm from '../components/TaskForm';
+import TasksList from '../components/TasksList';
 
-export default function Tasks() {
+export default function Tasks () {
   return (
     <div>
       <TaskForm/>
       <TasksList/>
     </div>
-  )
+  );
 }
