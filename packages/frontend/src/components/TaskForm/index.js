@@ -16,13 +16,15 @@ const TaskForm = (props) => {
       userId: ''
     }
     }
-      onSubmit={(values) => createTask(values)}
+      onSubmit={(values) => {
+        createTask(values);
+      }}
     >{
         formik => (
           <Form>
-            <Field name='value' />
-            <Field name='deadline' />
-            <Field name='userId' />
+            <p>User Id <Field name='userId' /></p>
+            <p>Task value <Field name='value' /></p>
+            <p>Deadline <Field name='deadline' /></p>
             <button type='submit'>Create task</button>
           </Form>
         )

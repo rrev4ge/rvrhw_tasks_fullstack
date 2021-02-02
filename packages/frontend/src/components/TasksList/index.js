@@ -10,18 +10,26 @@ const TasksListItem = (props) => {
   } = props;
 
   const dispatch = useDispatch();
-  const { updateTask } = bindActionCreators(tasksActionCreators, dispatch);
+  const { updateTask, deleteTask } = bindActionCreators(tasksActionCreators, dispatch);
 
-  const changeItem = () => updateTask(id, isDone);
   return (
       <li key={id}>
-        <p>taskValue: {value}</p>
-        <p>deadline: {deadline}</p>
-        <p>user: {userId}</p>
-        <label>
-          <input type="checkbox" name={isDone} value={!isDone} onChange={ changeItem() } />
+        <p>Task: {value}</p>
+        <p>
+          <>deadline: {deadline} </>
+          <>user: {userId} </>
+          <label>
+          <input type="checkbox" name="isDone" defaultChecked={isDone} onClick={
+            () => {
+              updateTask(id, { isDone: !isDone });
+            } } />
           {`IsDone: ${isDone}`}
-        </label>
+          </label> {}
+        <button onClick={
+            () => {
+              deleteTask(id);
+            } }>Remove task</button>
+        </p>
       </li>
   );
 };

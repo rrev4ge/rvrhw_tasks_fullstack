@@ -39,10 +39,11 @@ module.exports.updateTask = async (req, res, next) => {
     body, params: { taskId }
   } = req;
   try {
-    const foundTask = await Task.findByPk(taskId);
+    const foundTask = await Task.findByPk(taskId, { attributes: { exclude: ['createdAt', 'updatedAt'] } });
     // console.log('foundTask :>> ', foundTask);
     if (foundTask) {
-      const updatedTask = await foundTask.update(body);
+      const updatedTask = await foundTask.update(body, { attributes: { exclude: ['createdAt', 'updatedAt'] } });
+      // console.log(updatedTask);
       return res.status(200).send(updatedTask);
     }
     res.status(404).send('The task not found');
@@ -53,9 +54,10 @@ module.exports.updateTask = async (req, res, next) => {
 module.exports.removeTask = async (req, res, next) => {
   const { params: { taskId } } = req;
   try {
-    const removedTask = await Task.delete(taskId);
-    if (removedTask) {
-      return res.status(200).send(removedTask);
+    const foundTask = await Task.findByPk(taskId, { attributes: { exclude: ['createdAt', 'updatedAt'] } });
+    if (foundTask) {
+      await foundTask.destroy();
+      return res.status(200).send(foundTask);
     }
     return res.status(404).send('Task not found');
   } catch (err) {

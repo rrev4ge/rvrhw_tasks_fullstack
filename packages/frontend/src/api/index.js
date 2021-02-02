@@ -7,3 +7,4 @@ const apiInstance = axios.create({
 export const createTask = data => apiInstance.post('/tasks', data);
 export const getTasks = () => apiInstance.get('/tasks');
 export const updateTask = (id, data) => apiInstance.patch(`/tasks/${id}`, data);
+export const deleteTask = (id) => apiInstance.delete(`/tasks/${id}`);

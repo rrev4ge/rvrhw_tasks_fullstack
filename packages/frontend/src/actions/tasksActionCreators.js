@@ -20,8 +20,27 @@ export const createTaskError = (error) => ({
   error
 });
 
-// PATCH
+// GET
+export const getTasks = (params) => ({
+  type: ACTION_TYPES.GET_TASKS,
+  params
+});
 
+export const getTasksRequest = () => ({
+  type: ACTION_TYPES.GET_TASKS_REQUEST
+});
+
+export const getTasksSuccess = (tasks) => ({
+  type: ACTION_TYPES.GET_TASKS_SUCCESS,
+  tasks
+});
+
+export const getTasksError = (error) => ({
+  type: ACTION_TYPES.GET_TASKS_ERROR,
+  error
+});
+
+// UPDATE
 export const updateTask = (id, data) => ({
   type: ACTION_TYPES.UPDATE_TASK,
   id,
@@ -42,22 +61,22 @@ export const updateTaskError = (error) => ({
   error
 });
 
-// GET
-export const getTasks = (params) => ({
-  type: ACTION_TYPES.GET_TASKS,
-  params
+// DELETE
+export const deleteTask = (id) => ({
+  type: ACTION_TYPES.DELETE_TASK,
+  id
 });
 
-export const getTasksRequest = () => ({
-  type: ACTION_TYPES.GET_TASKS_REQUEST
+export const deleteTaskRequest = () => ({
+  type: ACTION_TYPES.DELETE_TASK_REQUEST
 });
 
-export const getTasksSuccess = (tasks) => ({
-  type: ACTION_TYPES.GET_TASKS_SUCCESS,
-  tasks
+export const deleteTaskSuccess = (task) => ({
+  type: ACTION_TYPES.DELETE_TASK_SUCCESS,
+  task
 });
 
-export const getTasksError = (error) => ({
-  type: ACTION_TYPES.GET_TASKS_ERROR,
+export const deleteTaskError = (error) => ({
+  type: ACTION_TYPES.DELETE_TASK_ERROR,
   error
 });
