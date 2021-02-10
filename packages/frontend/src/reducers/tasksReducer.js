@@ -7,7 +7,7 @@ const initialState = {
 };
 
 function tasksReducer (state = initialState, action) {
-  const { type } = action;
+  const { type, tasks, task, error } = action;
   switch (type) {
     case ACTION_TYPES.CREATE_TASK_REQUEST:
     case ACTION_TYPES.GET_TASKS_REQUEST:
@@ -20,50 +20,45 @@ function tasksReducer (state = initialState, action) {
     }
 
     case ACTION_TYPES.CREATE_TASK_SUCCESS: {
-      const { task } = action;
-
       return {
         ...state,
         tasks: [...state.tasks, task],
-        isFetching: false
+        isFetching: false,
+        error: null
       };
     }
     case ACTION_TYPES.GET_TASKS_SUCCESS: {
-      const { tasks } = action;
-
       return {
         ...state,
         tasks: tasks,
         isFetching: false,
-        error: false
+        error: null
       };
     }
     case ACTION_TYPES.UPDATE_TASK_SUCCESS: {
-      const { task } = action;
       return {
         ...state,
         tasks: state.tasks.map(t =>
           t.id === task.id ? { ...t, ...task } : t
         ),
-        isFetching: false
+        isFetching: false,
+        error: null
       };
     }
     case ACTION_TYPES.DELETE_TASK_SUCCESS: {
-      const { task } = action;
       return {
         ...state,
         tasks: state.tasks.filter(t =>
           t.id !== task.id
         ),
-        isFetching: false
+        isFetching: false,
+        error: null
       };
     }
     case ACTION_TYPES.CREATE_TASK_ERROR:
     case ACTION_TYPES.GET_TASKS_ERROR:
     case ACTION_TYPES.UPDATE_TASK_ERROR:
     case ACTION_TYPES.DELETE_TASK_ERROR: {
-      const { error } = action;
-
       return {
         ...state,
         isFetching: false,
